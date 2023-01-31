@@ -139,4 +139,12 @@ void Watering() //Выполнение полива
         Watering_Flag = 0;
     }
 
+
 }
+
+void kek()
+{
+
+}
+
+////
