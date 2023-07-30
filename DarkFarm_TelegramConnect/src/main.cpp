@@ -22,6 +22,7 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   //Serial.begin(115200);
   connectWiFi();
+  bot.setChatID(-837409212);
   bot.attach(newMsg);
   //bot.attach(Read);
   //bot.attach(Double);
@@ -35,6 +36,7 @@ void loop()
 
 void connectWiFi() 
 {
+  
   delay(2000);
   Serial.begin(9600);
   Serial.println();
@@ -51,9 +53,19 @@ void connectWiFi()
 
 void newMsg(FB_msg& msg)
  {
+    // выводим ID чата, имя юзера и текст сообщения
+  Serial.print(msg.chatID);     // ID чата 
+  Serial.print(", ");
+  Serial.print(msg.username);   // логин
+  Serial.print(", ");
+  Serial.println(msg.text);     // текст
+
+/*
   if (msg.text == "/say_hello") bot.sendMessage("Hello!", msg.chatID);
   else if (msg.text == "/command1") digitalWrite(LED_BUILTIN, LOW);
   else if (msg.text == "/command2") digitalWrite(LED_BUILTIN, HIGH);
+
+*/
 }
 
 
