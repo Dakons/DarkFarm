@@ -13,9 +13,8 @@ FastBot bot(BOT_TOKEN);
 
 
 void connectWiFi();
-void Read(FB_msg& msg);
 void newMsg(FB_msg& msg);
-void Double(FB_msg& msg);
+
 
 void setup() 
 {
@@ -53,35 +52,14 @@ void connectWiFi()
 
 void newMsg(FB_msg& msg)
  {
-    // выводим ID чата, имя юзера и текст сообщения
+  if (msg.text == "/say_hello@DarkFarmRemote_bot") bot.sendMessage("Hello!", msg.chatID);
+  else if (msg.text == "/led_on@DarkFarmRemote_bot") digitalWrite(LED_BUILTIN, HIGH);
+  else if (msg.text == "/led_off@DarkFarmRemote_bot") digitalWrite(LED_BUILTIN, LOW);
+  else if (msg.text == "/led_info@DarkFarmRemote_bot") bot.sendMessage(String(digitalRead(LED_BUILTIN)), msg.chatID);
+
   Serial.print(msg.chatID);     // ID чата 
   Serial.print(", ");
   Serial.print(msg.username);   // логин
   Serial.print(", ");
   Serial.println(msg.text);     // текст
-
-/*
-  if (msg.text == "/say_hello") bot.sendMessage("Hello!", msg.chatID);
-  else if (msg.text == "/command1") digitalWrite(LED_BUILTIN, LOW);
-  else if (msg.text == "/command2") digitalWrite(LED_BUILTIN, HIGH);
-
-*/
-}
-
-
-void Read(FB_msg& msg)
- {
-  // выводим ID чата, имя юзера и текст сообщения
-  Serial.print(msg.chatID);     // ID чата 
-  Serial.print(", ");
-  Serial.print(msg.username);   // логин
-  Serial.print(", ");
-  Serial.println(msg.text);     // текст
-}
-
-
-void Double(FB_msg& msg) 
-{
-  // отправить сообщение обратно
-  bot.sendMessage(msg.text, msg.chatID);  
 }
