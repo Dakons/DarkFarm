@@ -27,7 +27,7 @@ byte SecondTimeMarker; //Когда свет выключается
 
 };
 
- Light_Preset LP_FIRST; //Создаем структуру пресета для света
+Light_Preset LP_FIRST; //Создаем структуру пресета для света
 
 struct Water_Preset //Структура для пресета полива
 {
