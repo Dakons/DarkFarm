@@ -59,20 +59,26 @@ void LightControl();
 
 void setup()
 {
+  rtc.begin();
+  //rtc.setTime(BUILD_SEC, BUILD_MIN, BUILD_HOUR, BUILD_DAY, BUILD_MONTH, BUILD_YEAR);
   EEPROM.begin(EEPROM_SIZE);
   pinMode(LED_BUILTIN, OUTPUT);
-  // Serial.begin(115200);
+  Serial.begin(115200);
+  /*
   connectWiFi();
   bot.setChatID(-837409212);
   bot.attach(newMsg);
+  */
   // bot.attach(Read);
   // bot.attach(Double);
+
 }
 
 void loop()
 {
+  //bot.tick();
 
-  bot.tick();
+  Serial.println(rtc.getTimeString());
 }
 
 void connectWiFi()
@@ -195,6 +201,10 @@ void newMsg(FB_msg &msg)
     bot.sendMessage("Новое значение: " + String(WP_MAIN.lighton_timemarker), msg.chatID);
   }
 
+  else if (msg.text.startsWith("/set_time"))
+  {
+
+  }
 
   Serial.print(msg.chatID); // ID чата
   Serial.print(", ");
